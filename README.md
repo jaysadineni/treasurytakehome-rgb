@@ -8,36 +8,25 @@ It accelerates routine matching tasks while keeping agents fully in control.
 ---
 🖼️ Architecture Diagram
 -
-┌──────────────────────────────────────────────────────────────────────────────┐
-│                           FRONTEND (Thymeleaf UI)                            │
-│                                                                              │
-│   • Single-page interface                                                    │
-│   • Upload 1–300 label images                                                │
-│   • Application data form                                                    │
-│   • Results table                                                            │
-└──────────────────────────────────────────────────────────────────────────────┘
-                                      │
-                                      ▼  HTTP (REST)
-┌──────────────────────────────────────────────────────────────────────────────┐
-│                           SPRING BOOT BACKEND                                │
-│                                                                              │
-│   ┌──────────────────────────────┐      ┌──────────────────────────────────┐ │
-│   │      UploadController        │      │     VerificationController       │ │
-│   │  /upload/batch               │      │  /verify                         │ │
-│   └──────────────────────────────┘      └──────────────────────────────────┘ │
-│                 │                                      │                     │
-│                 ▼                                      ▼                     │
-│   ┌──────────────────────────────┐      ┌──────────────────────────────────┐ │
-│   │   BatchProcessingService     │      │      VerificationService         │ │
-│   │  • Parallel processing       │      │  • Fuzzy matching                │ │
-│   │  • ExecutorService/WebFlux   │      │  • ABV numeric checks            │ │
-│   │  • <5 sec per label          │      │  • Strict warning validation     │ │
-│   └──────────────────────────────┘      └──────────────────────────────────┘ │
-│                 │                                      │                     │
-│                 ▼                                      ▼                     │
-│   ┌──────────────────────────────┐      ┌──────────────────────────────────┐ │
-│   │     AIExtractionService      │      │         Utility Layer            │ │
-│   │  • Calls GPT‑4o/Gemini       │      │  • Fuzzy
+       FRONTEND (Thymeleaf UI)                          
+                                                            
+ • Single-page interface      
+• Upload 1–300 label images   
+• Application data form           
+• Results table    
+│
+▼  HTTP (REST)
+SPRING BOOT BACKEND 
+     UploadController  |    VerificationController  
+   /upload/batch       │  /verify  
+
+ BatchProcessingService │VerificationService 
+• Parallel processing   │Fuzzy matching      
+ ExecutorService/WebFlux │   ABV numeric checks          
+• <5 sec per label       │ Strict warning validation     
+               ▼         ▼                     
+AIExtractionService      │Utility Layer
+│  • Runtime calls • Fuzzy
 
 ---
 🎯 Key Features
