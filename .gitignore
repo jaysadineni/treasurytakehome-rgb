@@ -1,0 +1,42 @@
+# Maven build directory
+target/
+
+# Maven wrapper files
+.mvn/
+mvnw
+mvnw.cmd
+
+# Logs
+*.log
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.project
+.classpath
+.settings/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Java
+*.class
+
+# Spring Boot
+spring.log
+
+# Node / React (if included in your project)
+node_modules/
+dist/
+build/
+
+# Environment files
+*.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
